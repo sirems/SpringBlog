@@ -12,6 +12,10 @@ namespace SpringBlog.Areas.Admin.Controllers
 {
     public class PostsController : AdminBaseController
     {
+        public ActionResult Index()
+        {
+            return View(db.Posts.ToList());
+        }
         // GET: Admin/Posts
         public ActionResult New()
         {
@@ -39,11 +43,26 @@ namespace SpringBlog.Areas.Admin.Controllers
                 db.Posts.Add(post);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index");
             }
             ViewBag.CategoryId =
                 new SelectList(db.Categories.OrderBy(x => x.CategoryName).ToList(), "Id", "CategoryName");
             return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var post = db.Posts.Find(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Posts.Remove(post);
+            db.SaveChanges();
+            TempData["SuccessMessage"] = "The post has been deleted successfully!";
+            return RedirectToAction("Index");
         }
     }
 }

@@ -11,24 +11,32 @@
     <div class="card-body">
         <table data-table="true" class="table table-bordered table-striped">
             <thead>
-            <tr>
-                <th>Id</th>
-                <th>Category Name</th>
-                <th>Actions</th>
-            </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.CategoryName</td>
-                    <td>EDIT | DELETE</td>
-                </tr>
-            }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.CategoryName</td>
+                        <td>
+                            <a href="@Url.Action("Edit",new{id=item.Id})" class="btn btn-info">
+                                <i class="fas fa-edit"></i>Edit
+                            </a>
+                            <a href="#" class="btn btn-danger" data-delete-id="@item.Id" data-delete-name="@item.CategoryName" data-delete-action="@Url.Action("Delete")">
+                                <i class="fas fa-trash"></i>Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
+@Html.Partial("_DeleteModalPartial")

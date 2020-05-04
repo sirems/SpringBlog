@@ -19,11 +19,12 @@ namespace SpringBlog.Models
             userIdentity.AddClaim(new Claim("DisplayName",DisplayName));
             return userIdentity;
         }
-        //gözüken ad
+        //gözüken ad,fullname
         [MaxLength(30)]
         public string DisplayName { get; set; }
 
         //yazarın yazıları olur
+        //navigation property.yazarın yazılarıolur
         public virtual ICollection<Post> Posts { get; set; }
     }
 
