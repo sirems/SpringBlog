@@ -298,26 +298,27 @@
     <script src="~/Areas/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="~/Areas/Admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="~/Areas/Admin/plugins/toastr/toastr.min.js"></script>
-    <!-- AdminLTE App -->
+<script src="~/Areas/Admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<!-- AdminLTE App -->
     <script src="~/Areas/Admin/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/Areas/Admin/dist/js/demo.js"></script>
 <!-- Summernote -->
 <script src="~/Areas/Admin/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="~/Areas/Admin/dist/js/admin.custom.js"></script>
-    @RenderSection("scripts", false)
-<script>
-    @if (TempData["SuccessMessage"] !=null)
-    {
-        <text> toastr.success('@(TempData["SuccessMessage"])');</text>
-        
-    }
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <text>
-    toastr.success('@TempData["ErrorMessage"]');
-        </text>
-    }
-</script>
-</body>
-</html>
+@RenderSection("scripts", false)
+    <script>
+        @if (TempData["SuccessMessage"] !=null)
+        {
+            <text>
+            toastr.success('@(TempData["SuccessMessage"])');
+            </text>
+        }
+        @if (TempData["ErrorMessage"] !=null)
+        {
+            <text>
+        toastr.error('@(TempData["ErrorMessage"])');
+            </text>
+        }
+    </script>

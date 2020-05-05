@@ -5,6 +5,23 @@
 .blog-post img {
     max-width: 100%;
 }
-.show-post img {    
+
+.blog-post-content {
+    position: relative;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.blog-post-content.long-text::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
+    width: 100%;
+    background-image: linear-gradient(to bottom, transparent, darkgrey);
+}
+
+.show-post img {
     max-width: 100%;
 }

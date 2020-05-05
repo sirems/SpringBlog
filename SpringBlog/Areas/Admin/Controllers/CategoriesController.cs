@@ -64,20 +64,27 @@ namespace SpringBlog.Areas.Admin.Controllers
             }
 
             return View(db.Categories.Find(category.Id));
-        }   
+        }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             var category = db.Categories.Find(id);
+
             if (category == null)
             {
                 return HttpNotFound();
             }
 
+            if (category.Posts.Count > 0)
+            {
+                TempData["ErrorMessage"] = "A category must not contain any posts in order to be deleted.";
+                return RedirectToAction("Index");
+            }
+
             db.Categories.Remove(category);
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Category has been deleted successfully!";
+            TempData["SuccessMessage"] = "The Category deleted successfully.";
             return RedirectToAction("Index");
         }
     }
