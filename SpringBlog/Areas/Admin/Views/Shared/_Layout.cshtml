@@ -174,66 +174,33 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index", "Dashboard")" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <!--Categories Area-->
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Categories
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","Categories")" class="nav-link">
-                                        <i class="fas fa-list nav-icon"></i>
-                                        <p>List Categories</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("New","Categories")" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
-                                        <p>Add New</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <!--Posts Area-->
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Posts
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","Posts")" class="nav-link">
-                                        <i class="fas fa-list nav-icon"></i>
-                                        <p>List Posts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("New","Posts")" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
-                                        <p>Add New</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
+                        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item">
+                                @MenuLink("Dashboard", "Index", "Dashboard", "fas fa-tachometer-alt")
+                            </li>
+                            <li class="nav-item has-treeview menu-open">
+                                @MenuLink("Categories", "", "Categories", "fas fa-table", true)
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        @MenuLink("List Categories", "Index", "Categories", "fas fa-list")
+                                    </li>
+                                    <li class="nav-item">
+                                        @MenuLink("Add New", "New", "Categories", "fas fa-plus")
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item has-treeview menu-open">
+                                @MenuLink("Posts", "", "Posts", "fas fa-file-alt", true)
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        @MenuLink("List Posts", "Index", "Posts", "fas fa-list")
+                                    </li>
+                                    <li class="nav-item">
+                                        @MenuLink("Add New", "New", "Posts", "fas fa-plus")
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -251,10 +218,7 @@
                             <h1>@ViewBag.Title</h1>
                         </div>
                         <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Visit Website</a></li>
-                                <li class="breadcrumb-item active">Blank Page</li>
-                            </ol>
+                            @Html.Partial("_BreadcrumbPartial")
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -312,18 +276,36 @@
     <script src="~/Areas/Admin/dist/js/admin.custom.js"></script>
     @RenderSection("scripts", false)
     <script>
-        @if (TempData["SuccessMessage"] !=null)
-        {
-            <text>
-            toastr.success('@(TempData["SuccessMessage"])');
-            </text>
-        }
-        @if (TempData["ErrorMessage"] !=null)
-        {
-            <text>
-        toastr.error('@(TempData["ErrorMessage"])');
-            </text>
-        }
+    @if (TempData["SuccessMessage"] !=null)
+    {
+        <text>
+    toastr.success('@(TempData["SuccessMessage"])');
+        </text>
+    }
+    @if (TempData["ErrorMessage"] !=null)
+    {
+        <text>
+    toastr.error('@(TempData["ErrorMessage"])');
+        </text>
+    }
     </script>
 </body>
 </html>
+@helper MenuLink(string linkText, string actionName, string controllerName, string iconClass, bool isParent = false)
+{
+    var currentController = this.ViewContext.RouteData.Values["controller"].ToString();
+    var currentAction = this.ViewContext.RouteData.Values["action"].ToString();
+    bool isActive = controllerName == currentController && (isParent || actionName == currentAction);
+
+    <a href="@Url.Action(actionName, controllerName)" class="nav-link @(isActive ? "active" : "")">
+        <i class="nav-icon @iconClass"></i>
+        <p>
+            @linkText
+
+            @if (isParent)
+            {
+                <i class="right fas fa-angle-left"></i>
+            }
+        </p>
+    </a>
+}
