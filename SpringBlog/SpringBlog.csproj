@@ -2109,6 +2109,13 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Upload\12c82738-eeab-46f9-88e4-8bccd0099955.jpg" />
+    <Content Include="Upload\32c3f245-6f06-4284-8557-331e551a0737.jpg" />
+    <Content Include="Upload\494b8bdf-fbd0-488b-939b-036672995dae.jpg" />
+    <Content Include="Upload\4ac58a20-c106-4f9e-8b57-8493fb677ced.jpg" />
+    <Content Include="Upload\7bb99e52-0f40-48d9-a177-945d19b0b9b2.jpg" />
+    <Content Include="Upload\a8777d2a-e340-480b-b52b-1446907f428b.jpg" />
+    <Content Include="Upload\bc1fc342-699a-4d20-bf2f-3ca6b36f3cc2.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2157,12 +2164,12 @@
     <Content Include="Views\Post\Show.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Upload\.gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AdminBase\" />
-    <Folder Include="Upload\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

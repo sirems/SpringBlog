@@ -87,6 +87,7 @@
 
                 $.post("@Url.Action("ConvertToSlug")", { title: title }, function (data) {
                     $("#Slug").val(data);
+                    $("#Slug").trigger("blur"); //validation tetiklemek için
                 });
             }
         });
