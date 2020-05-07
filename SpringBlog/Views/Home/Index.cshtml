@@ -1,4 +1,5 @@
-﻿@model HomeIndexViewModel
+﻿
+@model HomeIndexViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -11,13 +12,13 @@
     }
     else
     {
-        @(Model.Category == null ? " My Blog Post" : $"Posts in \"Model.Category.CategoryName \"")
+        @(Model.Category == null ? "My Blog Posts" : $"Posts in \"{Model.Category.CategoryName}\"")
     }
 
     @*@Html.ActionLink("yönetim","Index","Dashboard",new{area="Admin"},null)*@
 </h1>
 
-@if (!Model.Posts.Any() && Model.SearchTerm !=null)
+@if (!Model.Posts.Any() && Model.SearchTerm != null)
 {
     <p> No results found!</p>
 }
@@ -44,18 +45,26 @@
         </div>
     </div>
 }
+<nav aria-label="Page Number and Pagination">
+    <div class="mb-3 text-center">
+        Page @(Model.Posts.PageCount < Model.Posts.PageNumber ? 0 : Model.Posts.PageNumber) of @Model.Posts.PageCount
+    </div>
 
-
-<!-- Pagination -->
-<ul class="pagination justify-content-center mb-4 mt-auto">
-    <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-    </li>
-    <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-    </li>
-</ul>
-
+    @Html.PagedListPager(Model.Posts, page => Url.Action("Index",
+        new { page, cid = Model.CategoryId, q = Model.SearchTerm }), new PagedListRenderOptionsBase
+        {
+            ContainerDivClasses = new string[] { "pagination-container", "d-flex" },
+            UlElementClasses = new string[] { "pagination", "mx-auto" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            EllipsesElementClass = "page-link",
+            LinkToFirstPageFormat = "&laquo;",
+            LinkToLastPageFormat = "&raquo;",
+            LinkToPreviousPageFormat = "&lsaquo;",
+            LinkToNextPageFormat = "&rsaquo;",
+            MaximumPageNumbersToDisplay = 5,
+        })
+</nav>
 @section scripts {
     <script>
         $(".blog-post-content").each(function () {
