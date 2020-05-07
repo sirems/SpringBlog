@@ -22,6 +22,8 @@ namespace SpringBlog.Models
         //gözüken ad,fullname
         [MaxLength(30)]
         public string DisplayName { get; set; }
+        [MaxLength(100)]
+        public string ProfilePhoto { get; set; }    
 
         //yazarın yazıları olur
         //navigation property.yazarın yazılarıolur

@@ -1,4 +1,6 @@
 ﻿$(function () {
+    bsCustomFileInput.init();
+
     $("#frmSearch").submit(function (e) {
         var q = $("#q").val().trim();
         $("#q").val(q);
@@ -6,4 +8,6 @@
             e.preventDefault();
         }
     });
+
+
 });
