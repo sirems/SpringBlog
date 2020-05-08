@@ -13,25 +13,40 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                @using (Html.BeginForm("New", "Categories", FormMethod.Post,new{role="form"}))
+                @using (Html.BeginForm("New", "Categories", FormMethod.Post, new { role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                        <div class="card-body">
-                            <div class="form-group">
-                                @Html.LabelFor(x=>x.CategoryName)
-                                @Html.TextBoxFor(x=>x.CategoryName,new{@class="form-control",placeholder="Category Name"})
-                                @Html.ValidationMessageFor(x=>x.CategoryName,null,new{@class="text-danger"})
-                            </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.CategoryName)
+                            @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", placeholder = "Category Name" })
+                            @Html.ValidationMessageFor(x => x.CategoryName, null, new { @class = "text-danger" })
                         </div>
-                        <!-- /.card-body -->
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Slug)
 
-                        <div class="card-footer">
-                            <a href="@Url.Action("Index")" class="btn btn-warning">
-                                Cancel
-                            </a>
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Slug, new { @class = "form-control", placeholder = "Short Url" })
+                                <div class="input-group-append">
+                                    <a id="refreshSlug" href="#" class="btn btn-outline-secondary">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            @Html.ValidationMessageFor(x => x.Slug, null, new { @class = "text-danger" })
                         </div>
-                
+                    </div>
+
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <a href="@Url.Action("Index")" class="btn btn-warning">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+
                 }
 
             </div>
@@ -40,3 +55,9 @@
     </div>
 </div>
 
+
+@section scripts {
+    <script>
+        slug.run("#CategoryName", "#Slug", "#refreshSlug");
+    </script>
+}

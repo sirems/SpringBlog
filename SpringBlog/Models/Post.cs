@@ -17,13 +17,13 @@ namespace SpringBlog.Models
         public int CategoryId { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [StringLength(200)]
         public string Title { get; set; }
         public string Content { get; set; }
         public string PhotoPath { get; set; }   
 
         [Required]
-        [MaxLength(200)]
+        [StringLength(200)]
         public string Slug { get; set; }    
         
         [Required]

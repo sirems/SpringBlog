@@ -20,9 +20,10 @@ namespace SpringBlog.Models
             return userIdentity;
         }
         //gözüken ad,fullname
-        [MaxLength(30)]
+        [StringLength(30)]
+        [Required]
         public string DisplayName { get; set; }
-        [MaxLength(100)]
+        [StringLength(100)]
         public string ProfilePhoto { get; set; }    
 
         //yazarın yazıları olur
