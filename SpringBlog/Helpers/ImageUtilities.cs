@@ -13,7 +13,7 @@ namespace SpringBlog.Helpers
         {
             if (!string.IsNullOrEmpty(fileName))
             {
-                var absPhotoPath = Path.Combine(controller.Server.MapPath("~/Upload" + folderName), fileName);
+                var absPhotoPath = Path.Combine(controller.Server.MapPath("~/Upload/" + folderName), fileName);
 
                 if (System.IO.File.Exists(absPhotoPath))    
                 {

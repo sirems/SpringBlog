@@ -8,6 +8,7 @@
 <h1 class="my-4">
     @if (Model.SearchTerm != null)
     {
+
         <text> Search Results for &quot;@Model.SearchTerm&quot;</text>
     }
     else
@@ -20,8 +21,10 @@
 
 @if (!Model.Posts.Any() && Model.SearchTerm != null)
 {
-    <p> No results found!</p>
-}
+    <div class="alert alert-danger">
+        <p> No results found!</p>
+    </div>
+}   
 @foreach (var post in Model.Posts)
 {
     <!-- Blog Post -->
