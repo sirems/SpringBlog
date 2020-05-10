@@ -83,27 +83,6 @@
 }
 @section scripts {
     <script>
-        $(function () {
-            $("#Title").change(function () {
-                if (!$("#Slug").val()) {
-                    generateSlug();
-                }
-            });
-
-            $("#refreshSlug").click(function (event) {
-                event.preventDefault();
-                generateSlug();
-            });
-
-            function generateSlug() {
-                var title = $("#Title").val();
-                if (!title) return;
-
-                $.post("@Url.Action("ConvertToSlug")", { title: title }, function (data) {
-                    $("#Slug").val(data);
-                    $("#Slug").trigger("blur"); //validation tetiklemek için
-                });
-            }
-        });
+        slug.run("#Title", "#Slug", "#refreshSlug");
     </script>
 }
