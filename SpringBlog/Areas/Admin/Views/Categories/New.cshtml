@@ -3,7 +3,6 @@
     ViewBag.Title = "New Category";
 }
 
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
@@ -28,7 +27,7 @@
                             <div class="input-group">
                                 @Html.TextBoxFor(x => x.Slug, new { @class = "form-control", placeholder = "Short Url" })
                                 <div class="input-group-append">
-                                    <a id="refreshSlug" href="#" class="btn btn-outline-secondary">
+                                    <a id="refreshSlug" href="#" class="btn btn-outline-primary">
                                         <i class="fas fa-sync-alt"></i>
                                     </a>
                                 </div>
@@ -37,16 +36,12 @@
                             @Html.ValidationMessageFor(x => x.Slug, null, new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <a href="@Url.Action("Index")" class="btn btn-warning">
-                            Cancel
-                        </a>
+                        <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-primary">Add</button>
                     </div>
-
                 }
 
             </div>
@@ -57,6 +52,6 @@
 
 @section scripts {
     <script>
-        slug.run("#Title", "#Slug", "#refreshSlug");
+        slug.run("#CategoryName", "#Slug", "#refreshSlug");
     </script>
 }

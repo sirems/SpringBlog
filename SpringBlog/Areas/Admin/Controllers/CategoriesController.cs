@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SpringBlog.Helpers;
 using SpringBlog.Models;
 
 namespace SpringBlog.Areas.Admin.Controllers
@@ -27,13 +28,12 @@ namespace SpringBlog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.Slug = UrlService.URLFriendly(category.Slug);
                 db.Categories.Add(category);
                 db.SaveChanges();
-
-                TempData["SuccessMessage"] = "Category has been created successfully!";
+                TempData["SuccessMessage"] = "The Category has been created successfully.";
                 return RedirectToAction("Index");
             }
-
             return View();
         }
         //Edit
@@ -57,6 +57,7 @@ namespace SpringBlog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.Slug = UrlService.URLFriendly(category.Slug);
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "Category has been updated successfully!";
