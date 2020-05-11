@@ -27,8 +27,9 @@ namespace SpringBlog.Models
         public string ProfilePhoto { get; set; }    
 
         //yazarın yazıları olur
-        //navigation property.yazarın yazılarıolur
+        //navigation property.yazarın yazılarıolur  
         public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Comment>Comments { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -51,10 +52,21 @@ namespace SpringBlog.Models
                 .HasForeignKey(x=>x.CategoryId)
                 .WillCascadeOnDelete(false);
             //postun kategorisi zorunludur.kategori birden çok post ile gelir. her postunda foreign key categoryId vardır. bir kategori silindiğinde de postlarını silme
+            
+            //yazar silinince postları, postları silinince yorumları zaten silineceği için 
+            //yazarı silinince doğrudan yorumlarını sildirmeye gerek yok
+            //aksi taktirde birden çok cascade path'i oluşarak hataya sebep oluyor
+            modelBuilder.Entity<Comment>()
+                .HasRequired(x => x.Author)
+                .WithMany(x => x.Comments)
+                .HasForeignKey(x => x.AuthorId)
+                .WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Post> Posts { get; set; }  
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }    
     }
 }

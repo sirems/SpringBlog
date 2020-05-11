@@ -34,5 +34,6 @@ namespace SpringBlog.Models
             
         public virtual ApplicationUser Author { get; set; }
         public virtual Category Category { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }   
 }       
