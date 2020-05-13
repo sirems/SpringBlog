@@ -14,8 +14,8 @@
     <!-- Bootstrap core CSS -->
     <!-- <link href="~/Content/bootstrap.min.css" rel="stylesheet" />  -->
     @Styles.Render("~/Content/bootstrap")
-    <link href="~/Content/croppie.min.css" rel="stylesheet" />
-    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/croppie")
+    @Styles.Render("~/Content/fontawesome")
     <!-- Custom styles for this template -->
     @Styles.Render("~/Content/css")
 </head>
@@ -139,9 +139,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Areas/Admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-    <script src="~/Scripts/croppie.min.js"></script>
-    <script src="~/Scripts/site.js"></script>
+    @Scripts.Render("~/bundles/bs-custom-file-input")
+    @Scripts.Render("~/bundles/croppie")
+    @Scripts.Render("~/bundles/site")
     @RenderSection("scripts", false)
 </body>
 

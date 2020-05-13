@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -56,7 +57,6 @@ namespace SpringBlog.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
              //EmailUtilities.SendEmailAsync("siremsoydan96@gmail.com", "ssl li", "sslsslsl"); 
             return View();
         }
