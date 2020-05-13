@@ -2,8 +2,10 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using SpringBlog.Helpers;
 using SpringBlog.Models;
 using SpringBlog.ViewModels;
 using X.PagedList;
@@ -55,6 +57,7 @@ namespace SpringBlog.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+             //EmailUtilities.SendEmailAsync("siremsoydan96@gmail.com", "ssl li", "sslsslsl"); 
             return View();
         }
 
