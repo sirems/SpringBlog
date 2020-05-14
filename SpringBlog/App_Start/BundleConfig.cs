@@ -8,6 +8,7 @@ namespace SpringBlog
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.UseCdn = true;
             //https://docs.microsoft.com/en-us/aspnet/mvc/overview/performance/bundling-and-minification
             bundles.Add(new ScriptBundle("~/bundles/jquery", "https://code.jquery.com/jquery-3.4.1.min.js").Include(
                 "~/Scripts/jquery-{version}.js"));
